@@ -10,6 +10,7 @@
     "parcel-bundler": "^1.12.4"
   },
   "dependencies": {
-    "axios": "^0.21.1"
+    "axios": "^0.21.1",
+    "normalize.css": "^8.0.1"
   }
 }

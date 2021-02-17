@@ -1,1 +1,3 @@
-import axios from 'axios';
+import App from './components/App/App';
+
+App();
