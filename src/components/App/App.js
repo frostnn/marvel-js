@@ -1,5 +1,5 @@
 import Comics from '../Comics/Comics';
-import classes from './App.css';
+import './App.css';
 
 const App = async () => {
   await Comics();

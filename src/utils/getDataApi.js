@@ -11,7 +11,6 @@ const getDataApi = async (url) => {
     });
     return response.data.data.results;
   } catch (error) {
-    console.log(error.message);
     return false;
   }
 };

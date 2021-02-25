@@ -1,0 +1,14 @@
+#marvel_block-root {
+  width: 100%;
+}
+.error_block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 600px;
+}
+.error_block-text {
+  color: whitesmoke;
+  text-align: center;
+  font-size: 28px;
+}
