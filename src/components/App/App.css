@@ -1,3 +1,29 @@
+:root {
+  --color-blue: #3199dc;
+  --color-dark: #222;
+}
+
+* {
+  scrollbar-color: var(--color-blue) var(--color-dark);
+  scrollbar-width: thin;
+}
+
 body {
-  background-color: bisque;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  background-color: var(--color-dark);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-blue);
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-dark);
 }

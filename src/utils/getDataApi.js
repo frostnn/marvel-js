@@ -6,7 +6,7 @@ const getDataApi = async (url) => {
     const response = await axios.get(url, {
       params: {
         apikey: API_KEY,
-        limit: 20,
+        limit: 100,
       },
     });
     return response.data.data.results;

@@ -883,6 +883,21 @@ var URL_COMICS = 'comics';
 exports.URL_COMICS = URL_COMICS;
 var URL_CHARACTERS = 'characters';
 exports.URL_CHARACTERS = URL_CHARACTERS;
+},{}],"../src/const/root.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.NOT_IMG = exports.IMG_SIZE = exports.ROOT_MODAL = exports.ROOT_INDEX = void 0;
+var ROOT_INDEX = document.getElementById('marvel_block-root');
+exports.ROOT_INDEX = ROOT_INDEX;
+var ROOT_MODAL = document.getElementById('marvel_block-modal');
+exports.ROOT_MODAL = ROOT_MODAL;
+var IMG_SIZE = '/portrait_uncanny';
+exports.IMG_SIZE = IMG_SIZE;
+var NOT_IMG = 'image_not_available';
+exports.NOT_IMG = NOT_IMG;
 },{}],"../node_modules/axios/lib/helpers/bind.js":[function(require,module,exports) {
 'use strict';
 
@@ -2713,7 +2728,7 @@ var getDataApi = /*#__PURE__*/function () {
             return _axios.default.get(url, {
               params: {
                 apikey: _api.API_KEY,
-                limit: 20
+                limit: 100
               }
             });
 
@@ -2809,7 +2824,89 @@ function reloadCSS() {
 }
 
 module.exports = reloadCSS;
-},{"./bundle-url":"../node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"../src/components/App/App.css":[function(require,module,exports) {
+},{"./bundle-url":"../node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"../src/components/Comics/Comics.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../src/components/Comics/Comics.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+require("regenerator-runtime/runtime");
+
+var _api = require("../../const/api");
+
+var _root = require("../../const/root");
+
+var _getDataApi = _interopRequireDefault(require("../../utils/getDataApi"));
+
+var _Comics = _interopRequireDefault(require("./Comics.css"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+var Comics = /*#__PURE__*/function () {
+  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+    var data, htmlContent, htmlWrapper;
+    return regeneratorRuntime.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.next = 2;
+            return (0, _getDataApi.default)(_api.API_URL + _api.URL_COMICS);
+
+          case 2:
+            data = _context.sent;
+            htmlContent = '';
+            data.forEach(function (_ref2) {
+              var id = _ref2.id,
+                  title = _ref2.title,
+                  _ref2$thumbnail = _ref2.thumbnail,
+                  path = _ref2$thumbnail.path,
+                  extension = _ref2$thumbnail.extension;
+
+              if (path.lastIndexOf(_root.NOT_IMG) === -1) {
+                var url = "".concat((_api.API_URL, _api.API_URL)).concat(id, "/").concat(_api.URL_CHARACTERS);
+                var imgPath = "".concat(path).concat(_root.IMG_SIZE, ".").concat(extension);
+                htmlContent += "\n      <div class=\"col-4 mb-5\">\n        <div class=\"comics_item\" data-url=\"".concat(url, "\">\n          <div class=\"comics_item-title\">").concat(title, "</div>\n          <img src=\"").concat(imgPath, "\" alt=\"\" class=\"comics_item-img\">\n        </div>\n      </div>\n    ");
+              }
+            });
+            htmlWrapper = "\n  <div class=\"row\">\n    ".concat(htmlContent, "\n  </div>");
+            _root.ROOT_INDEX.innerHTML += htmlWrapper;
+
+            (function () {
+              document.querySelectorAll('.comics_item').forEach(function (item) {
+                var url = item.getAttribute('data-url');
+                item.addEventListener('click', function () {
+                  console.log(url);
+                });
+              });
+            })();
+
+          case 8:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }));
+
+  return function Comics() {
+    return _ref.apply(this, arguments);
+  };
+}();
+
+var _default = Comics;
+exports.default = _default;
+},{"regenerator-runtime/runtime":"../node_modules/regenerator-runtime/runtime.js","../../const/api":"../src/const/api.js","../../const/root":"../src/const/root.js","../../utils/getDataApi":"../src/utils/getDataApi.js","./Comics.css":"../src/components/Comics/Comics.css"}],"../src/components/App/App.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -2822,13 +2919,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-require("regenerator-runtime/runtime");
+var _Comics = _interopRequireDefault(require("../Comics/Comics"));
 
-var _api = require("../../const/api");
-
-var _getDataApi = _interopRequireDefault(require("../../utils/getDataApi"));
-
-require("./App.css");
+var _App = _interopRequireDefault(require("./App.css"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2838,19 +2931,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 var App = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-    var data;
     return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
             _context.next = 2;
-            return (0, _getDataApi.default)(_api.API_URL + _api.URL_COMICS);
+            return (0, _Comics.default)();
 
           case 2:
-            data = _context.sent;
-            console.log(data);
-
-          case 4:
           case "end":
             return _context.stop();
         }
@@ -2865,7 +2953,7 @@ var App = /*#__PURE__*/function () {
 
 var _default = App;
 exports.default = _default;
-},{"regenerator-runtime/runtime":"../node_modules/regenerator-runtime/runtime.js","../../const/api":"../src/const/api.js","../../utils/getDataApi":"../src/utils/getDataApi.js","./App.css":"../src/components/App/App.css"}],"../src/index.js":[function(require,module,exports) {
+},{"../Comics/Comics":"../src/components/Comics/Comics.js","./App.css":"../src/components/App/App.css"}],"../src/index.js":[function(require,module,exports) {
 "use strict";
 
 var _App = _interopRequireDefault(require("./components/App/App"));
@@ -2901,7 +2989,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62218" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61795" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

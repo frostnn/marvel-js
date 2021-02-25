@@ -1,5 +1,59 @@
+.comics_item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--color-blue);
+  padding: 0px 0px 25px 0px;
+  overflow: hidden;
+}
+
+.comics_item-title {
+  padding: 20px 0;
+  text-align: center;
+  position: relative;
+  z-index: 99;
+}
+img {
+  transition: 0.5s;
+}
+.comics_item:hover img {
+  transform: scale(1.5);
+  transition: 0.5s;
+}
+
+.comics_item:hover .comics_item-title {
+  color: rgb(224, 223, 223);
+  font-weight: 600;
+}
+
+:root {
+  --color-blue: #3199dc;
+  --color-dark: #222;
+}
+
+* {
+  scrollbar-color: var(--color-blue) var(--color-dark);
+  scrollbar-width: thin;
+}
+
 body {
-  background-color: bisque;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  background-color: var(--color-dark);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-blue);
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-dark);
 }
 
 
