@@ -1,4 +1,3 @@
-import { Modal } from 'bootstrap';
 import { IMG_SIZE, ROOT_MODAL } from '../../const/root';
 import getDataApi from '../../utils/getDataApi';
 import Comics from '../Comics/Comics';
